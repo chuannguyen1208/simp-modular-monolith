@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿namespace Simp.IntegrationTests;
 
-namespace Simp.IntegrationTests;
-
-public class BasicTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
+public class BasicTests(BootstrapperWebApplicationFactory<Program> factory) : IClassFixture<BootstrapperWebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory = factory;
+    private readonly BootstrapperWebApplicationFactory<Program> _factory = factory;
 
     [Fact]
     public async Task Default()
