@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Shared.Infrastructure", "src\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj", "{B2604B20-62BE-451D-BE88-7FBA42D5D13F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{F76C7603-FAB1-47BF-86EF-45FDECA6406B}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.IntegrationTests", "tests\Simp.IntegrationTests\Simp.IntegrationTests.csproj", "{E0D8088B-DD96-4165-9F92-8E7D92E49EE5}"
 EndProject
