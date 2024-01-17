@@ -8,13 +8,14 @@ internal static class Extensions
 {
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
-        builder.Services.AddApiVersioning();
+        builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
     }
 
     public static void UseInfrastructure(this WebApplication app)
     {
+        app.UseSwagger();
+        app.UseSwaggerUI();
         app.UseEndpoints();
-        app.UseSwagger().UseSwaggerUI();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Simp.Shared.Abstractions.Primitives;
 using System.ComponentModel.DataAnnotations;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Simp.Modules.Shops.Domain.Entities;
 public class Ingredient : Entity
