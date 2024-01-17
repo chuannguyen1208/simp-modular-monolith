@@ -1,4 +1,5 @@
 using Serilog;
+using Simp.Modules.Shops.Api;
 using Simp.Shared.Infrastructure;
 
 var configuration = new ConfigurationBuilder()
@@ -12,19 +13,18 @@ Log.Logger = new LoggerConfiguration()
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
-    builder.Services.AddInfrastructure();
-
+    
     builder.Host.UseSerilog();
+    
+    builder.AddShopsModule();
+    builder.AddInfrastructure();
 
     var app = builder.Build();
 
+    app.UseShopsModule();
     app.UseInfrastructure();
 
-    app.MapGet("/", () =>
-    {
-        return Results.Ok("Modular monolith api");
-    });
+    app.MapGet("/", () => "Modular monolith api");
 
     app.Run();
 }

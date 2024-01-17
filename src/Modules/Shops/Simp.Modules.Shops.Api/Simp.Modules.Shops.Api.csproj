@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Simp.Bootstrapper" />
+	</ItemGroup>
+
+</Project>

@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Simp.Shared.Infrastructure.Routing;
 
 namespace Simp.Shared.Infrastructure;
 
 internal static class Extensions
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
-
-        return services;
+        builder.Services.AddApiVersioning();
+        builder.Services.AddSwaggerGen();
     }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
+    public static void UseInfrastructure(this WebApplication app)
     {
-        return app;
+        app.UseEndpoints();
+        app.UseSwagger().UseSwaggerUI();
     }
 }
