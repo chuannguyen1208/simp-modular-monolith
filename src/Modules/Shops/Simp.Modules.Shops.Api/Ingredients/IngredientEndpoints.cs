@@ -13,5 +13,6 @@ internal class IngredientEndpoints : IEndpointsDefinition
     public static void ConfigureEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/ingredients", (IMediator mediator) => mediator.Send(new GetInrgedientsQuery())).WithTags(TAG);
+        app.MapGet("/api/ingredients/{id:guid}", (Guid id, IMediator mediator) => mediator.Send(new GetIngredientQuery(id))).WithTags(TAG);
     }
 }
