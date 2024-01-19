@@ -8,7 +8,8 @@ public record GetInrgedientsQuery : IRequest<IEnumerable<IngredientResponse>>
     {
         public async Task<IEnumerable<IngredientResponse>> Handle(GetInrgedientsQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(Enumerable.Empty<IngredientResponse>());
+            await Task.Delay(500, cancellationToken);
+            return Enumerable.Empty<IngredientResponse>();
         }
     }
 }

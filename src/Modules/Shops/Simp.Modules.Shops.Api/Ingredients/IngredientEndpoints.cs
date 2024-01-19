@@ -6,7 +6,7 @@ using Simp.Modules.Shops.UseCases.Ingredients.Queries;
 using Simp.Shared.Abstractions.Routing;
 
 namespace Simp.Modules.Shops.Api.Ingredients;
-internal class IngredientModule : IEndpointsDefinition
+internal class IngredientEndpoints : IEndpointsDefinition
 {
     private const string TAG = "Cshop.Ingredient";
 

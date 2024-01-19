@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Simp.Modules.Shops.Contracts\Simp.Modules.Shops.Contracts.csproj" />
 	  <ProjectReference Include="..\Simp.Modules.Shops.Domain\Simp.Modules.Shops.Domain.csproj" />
 	</ItemGroup>

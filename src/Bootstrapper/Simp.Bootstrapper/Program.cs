@@ -15,7 +15,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
     
     builder.Host.UseSerilog();
-    
+
     builder.AddShopsModule();
     builder.AddInfrastructure();
 

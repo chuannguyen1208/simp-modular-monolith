@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Simp.Shared.Infrastructure.Routing;
 
@@ -8,14 +10,18 @@ internal static class Extensions
 {
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
-        builder.Services.AddEndpointsApiExplorer();
+        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureContainer<ContainerBuilder>((_, builder) =>
+            {
+                builder.RegisterModule<MediatorModule>();
+            });
+
         builder.Services.AddSwaggerGen();
     }
 
     public static void UseInfrastructure(this WebApplication app)
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
         app.UseEndpoints();
+        app.UseSwagger().UseSwaggerUI();
     }
 }

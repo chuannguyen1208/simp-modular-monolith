@@ -1,15 +1,16 @@
-﻿using Simp.Shared.Abstractions.Primitives;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Simp.Modules.Shops.Domain.Entities;
-public class Ingredient : Entity
+public class Ingredient
 {
-    protected Ingredient(string name, string stockName, int stockLevel) : base(Guid.Empty)
+    protected Ingredient(string name, string stockName, int stockLevel)
     {
         Name = name;
         StockName = stockName;
         StockLevel = stockLevel;
     }
+
+    public Guid Id { get; private set; }
 
     public string Name { get; private set; }
 
