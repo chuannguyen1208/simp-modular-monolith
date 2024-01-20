@@ -22,25 +22,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.IntegrationTests", "tests\Simp.IntegrationTests\Simp.IntegrationTests.csproj", "{E0D8088B-DD96-4165-9F92-8E7D92E49EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.IntegrationTests", "tests\Simp.IntegrationTests\Simp.IntegrationTests.csproj", "{E0D8088B-DD96-4165-9F92-8E7D92E49EE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shops", "Shops", "{AEC93D49-D603-4D21-877A-97C22A289D19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blogs", "Blogs", "{EBB86D6B-89E9-4690-AA29-4F12B3C74541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Blogs.Api", "src\Modules\Blogs\Simp.Modules.Blogs.Api\Simp.Modules.Blogs.Api.csproj", "{18B47DDA-881A-4495-83ED-CD79D7F79024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Blogs.Api", "src\Modules\Blogs\Simp.Modules.Blogs.Api\Simp.Modules.Blogs.Api.csproj", "{18B47DDA-881A-4495-83ED-CD79D7F79024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Shops.Api", "src\Modules\Shops\Simp.Modules.Shops.Api\Simp.Modules.Shops.Api.csproj", "{4758F3FF-DAB3-446A-814F-982F3E1B44C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Shops.Api", "src\Modules\Shops\Simp.Modules.Shops.Api\Simp.Modules.Shops.Api.csproj", "{4758F3FF-DAB3-446A-814F-982F3E1B44C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Shops.Domain", "src\Modules\Shops\Simp.Modules.Shops.Domain\Simp.Modules.Shops.Domain.csproj", "{8E2A9ECF-6272-47E6-B377-9E1EB2405200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Shops.Domain", "src\Modules\Shops\Simp.Modules.Shops.Domain\Simp.Modules.Shops.Domain.csproj", "{8E2A9ECF-6272-47E6-B377-9E1EB2405200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Shops.UseCases", "src\Modules\Shops\Simp.Modules.Shops.UseCases\Simp.Modules.Shops.UseCases.csproj", "{286A36E5-2058-4C87-88ED-CCFA24209432}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Shops.UseCases", "src\Modules\Shops\Simp.Modules.Shops.UseCases\Simp.Modules.Shops.UseCases.csproj", "{286A36E5-2058-4C87-88ED-CCFA24209432}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Shared.Abstractions", "src\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj", "{F8B7E83F-0E37-429F-A2A3-868CF3B78DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Shared.Abstractions", "src\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj", "{F8B7E83F-0E37-429F-A2A3-868CF3B78DD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Shops.Contracts", "src\Modules\Shops\Simp.Modules.Shops.Contracts\Simp.Modules.Shops.Contracts.csproj", "{F7FCBD4A-0B7E-4D0F-9968-2E0F35EF5986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Shops.Contracts", "src\Modules\Shops\Simp.Modules.Shops.Contracts\Simp.Modules.Shops.Contracts.csproj", "{F7FCBD4A-0B7E-4D0F-9968-2E0F35EF5986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Shops.Infrastructure", "src\Modules\Shops\Simp.Modules.Shops.Infrastructure\Simp.Modules.Shops.Infrastructure.csproj", "{32166B42-DC33-4291-8F6E-41D82DB792B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Shops.Infrastructure", "src\Modules\Shops\Simp.Modules.Shops.Infrastructure\Simp.Modules.Shops.Infrastructure.csproj", "{32166B42-DC33-4291-8F6E-41D82DB792B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Blogs.UseCases", "src\Modules\Blogs\Simp.Modules.Blogs.UseCases\Simp.Modules.Blogs.UseCases.csproj", "{6BD0CE60-98DA-463B-9314-FC83AB625AD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,10 @@ Global
 		{32166B42-DC33-4291-8F6E-41D82DB792B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32166B42-DC33-4291-8F6E-41D82DB792B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32166B42-DC33-4291-8F6E-41D82DB792B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD0CE60-98DA-463B-9314-FC83AB625AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD0CE60-98DA-463B-9314-FC83AB625AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD0CE60-98DA-463B-9314-FC83AB625AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD0CE60-98DA-463B-9314-FC83AB625AD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{F8B7E83F-0E37-429F-A2A3-868CF3B78DD4} = {C9524A9B-6676-447B-8724-3E49DA3FC72C}
 		{F7FCBD4A-0B7E-4D0F-9968-2E0F35EF5986} = {AEC93D49-D603-4D21-877A-97C22A289D19}
 		{32166B42-DC33-4291-8F6E-41D82DB792B4} = {AEC93D49-D603-4D21-877A-97C22A289D19}
+		{6BD0CE60-98DA-463B-9314-FC83AB625AD2} = {EBB86D6B-89E9-4690-AA29-4F12B3C74541}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EDE88CF-EADC-4B07-AA25-67ED4E0C7C9A}

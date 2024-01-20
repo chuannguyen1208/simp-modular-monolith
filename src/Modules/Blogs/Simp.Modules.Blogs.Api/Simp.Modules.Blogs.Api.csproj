@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Simp.Modules.Blogs.UseCases\Simp.Modules.Blogs.UseCases.csproj" />
+  </ItemGroup>
+
 </Project>

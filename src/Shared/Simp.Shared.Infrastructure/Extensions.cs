@@ -10,13 +10,12 @@ internal static class Extensions
 {
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
+        builder.Services.AddSwaggerGen();
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>((_, builder) =>
             {
                 builder.RegisterModule<MediatorModule>();
             });
-
-        builder.Services.AddSwaggerGen();
     }
 
     public static void UseInfrastructure(this WebApplication app)

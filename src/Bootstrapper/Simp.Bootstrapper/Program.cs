@@ -1,4 +1,5 @@
 using Serilog;
+using Simp.Modules.Blogs.Api;
 using Simp.Modules.Shops.Api;
 using Simp.Shared.Infrastructure;
 
@@ -17,11 +18,13 @@ try
     builder.Host.UseSerilog();
 
     builder.AddShopsModule();
+    builder.AddBlogsModule();
     builder.AddInfrastructure();
 
     var app = builder.Build();
 
     app.UseShopsModule();
+    app.UseBlogsModule();
     app.UseInfrastructure();
 
     app.MapGet("/", () => "Modular monolith api");
