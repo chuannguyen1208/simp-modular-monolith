@@ -1,4 +1,4 @@
-﻿namespace Simp.Shared.Abstractions.Repository;
+﻿namespace Simp.Shared.Abstractions.Repositories;
 public interface IRepository<TEntity> where TEntity : class
 {
     Task<TEntity?> GetByIdAsync(Guid id);

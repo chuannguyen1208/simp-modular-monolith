@@ -13,10 +13,14 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Autofac" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
 		<ProjectReference Include="..\Simp.Modules.Shops.Domain\Simp.Modules.Shops.Domain.csproj" />
+		<ProjectReference Include="..\Simp.Modules.Shops.UseCases\Simp.Modules.Shops.UseCases.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Simp.Shared.Abstractions.Repository;
+using Simp.Shared.Abstractions.Repositories;
 
-namespace Simp.Shared.Infrastructure.Repository;
-internal class Repository<TEntity>(DbContext context) : IRepository<TEntity> 
+namespace Simp.Shared.Infrastructure.Repositories;
+public class Repository<TEntity>(DbContext context) : IRepository<TEntity> 
     where TEntity : class
 {
     private readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();

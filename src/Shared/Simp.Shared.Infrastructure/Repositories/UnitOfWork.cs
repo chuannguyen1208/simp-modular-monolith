@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Simp.Shared.Abstractions.Repository;
+using Simp.Shared.Abstractions.Repositories;
 
-namespace Simp.Shared.Infrastructure.Repository;
-internal class UnitOfWork(DbContext context) : IUnitOfWork
+namespace Simp.Shared.Infrastructure.Repositories;
+public class UnitOfWork(DbContext context) : IUnitOfWork
 {
     public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
     {
@@ -14,8 +14,5 @@ internal class UnitOfWork(DbContext context) : IUnitOfWork
         return await context.SaveChangesAsync();
     }
 
-    public void Dispose()
-    {
-        context.Dispose();
-    }
+    public void Dispose() => context.Dispose();
 }

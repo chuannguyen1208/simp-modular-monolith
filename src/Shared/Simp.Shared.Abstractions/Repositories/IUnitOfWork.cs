@@ -1,5 +1,4 @@
-﻿
-namespace Simp.Shared.Abstractions.Repository;
+﻿namespace Simp.Shared.Abstractions.Repositories;
 public interface IUnitOfWork : IDisposable
 {
     Task<int> SaveChangesAsync();
