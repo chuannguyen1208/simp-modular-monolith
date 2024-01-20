@@ -12,8 +12,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Simp.Modules.Shops.Contracts\Simp.Modules.Shops.Contracts.csproj" />
-	  <ProjectReference Include="..\Simp.Modules.Shops.Domain\Simp.Modules.Shops.Domain.csproj" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Ingredients\" />
+	</ItemGroup>	
 
 </Project>
