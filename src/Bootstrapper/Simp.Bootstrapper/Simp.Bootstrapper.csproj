@@ -9,7 +9,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Modules\Blogs\Simp.Modules.Blogs.Api\Simp.Modules.Blogs.Api.csproj" />
-		<ProjectReference Include="..\..\Modules\Shops\Simp.Modules.Shops.Api\Simp.Modules.Shops.Api.csproj" />
 		<ProjectReference Include="..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
 	</ItemGroup>
 
