@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Simp.Modules.Cshops.Infrastructure;
 using Simp.Modules.Cshops.Infrastructure.EF;
+using System;
 
 namespace Simp.Modules.Cshops.Api;
 public static class Extensions
@@ -20,9 +21,16 @@ public static class Extensions
     public static void UseCshopsModule(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
+
         var compositionRoot = scope.ServiceProvider.GetRequiredService<ICshopsCompositionRoot>();
+
         var compositionScope = compositionRoot.GetLifetimeScope();
+
         var dbContext = compositionScope.Resolve<CshopDbContext>();
-        dbContext.Database.Migrate();
+
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

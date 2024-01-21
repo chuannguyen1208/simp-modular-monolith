@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Simp.IntegrationTests.Compositions;
 using Simp.Modules.Cshops.Infrastructure;
 
@@ -18,13 +17,16 @@ public class BootstrapperWebApplicationFactory<TProgram>
                 .AddConsole();
         });
 
-        builder.ConfigureTestContainer<ContainerBuilder>(builder =>
+        builder.UseEnvironment("Development");
+    }
+
+    protected override IHost CreateHost(IHostBuilder builder)
+    {
+        builder.ConfigureContainer<ContainerBuilder>(cb =>
         {
-            builder
-            .RegisterType<CshopsFakeCompositionRoot>()
-            .As<CshopsCompositionRoot>().SingleInstance();
+            cb.RegisterType<CshopsFakeCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
         });
 
-        builder.UseEnvironment("Development");
+        return base.CreateHost(builder);
     }
 }

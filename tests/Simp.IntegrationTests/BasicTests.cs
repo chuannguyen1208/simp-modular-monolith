@@ -1,4 +1,5 @@
 ﻿using Simp.Modules.Cshop.Domain.Entities;
+using Simp.Modules.Cshops.UseCases.Ingredients.Commands;
 
 namespace Simp.IntegrationTests;
 
@@ -34,7 +35,22 @@ public class BasicTests(BootstrapperWebApplicationFactory<Program> factory) : IC
 
         // Assert
         response.EnsureSuccessStatusCode(); // Status Code 200-299
+    }
 
-        var ingredients = await response.Content.ReadFromJsonAsync<IEnumerable<Ingredient>>();
+    [Fact]
+    public async Task CreateIngredients()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var command = new CreateIngredientCommand("Espresso", "Shots", 10);
+
+        // Act
+        var response = await client.PostAsJsonAsync<CreateIngredientCommand>("/api/ingredients", command);
+
+        // Assert
+        response.EnsureSuccessStatusCode(); // Status Code 200-299
+        var id = await response.Content.ReadAsStringAsync();
+
+        Assert.NotNull(id);
     }
 }
