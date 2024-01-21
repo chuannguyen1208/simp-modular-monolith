@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Simp.Modules.Blogs.Api.Queries;
 
-namespace Simp.Modules.Blogs.Api.Modules;
+namespace Simp.Modules.Blogs.Api.Modules.MediatorHandlers;
 
-internal class MediatorModule : Module
+internal class MediatorHandlerModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {

@@ -1,27 +1,17 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MediatR.Pipeline;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 using Simp.Modules.Blogs.UseCases.Blogs.Queries;
 using System.Reflection;
-using Simp.Modules.Blogs.Infrastructure;
 
-namespace Simp.Modules.Blogs.Api.Modules;
+namespace Simp.Modules.Blogs.Api.Modules.Compositions;
 
-internal class CompositionModule : Autofac.Module
+internal class MediatorModule : Autofac.Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        var container = ConfigureContainer();
-        var compositionRoot = new BlogsCompositionRoot(container);
-        builder.RegisterInstance(compositionRoot).SingleInstance();
-    }
-
-    private static IContainer ConfigureContainer()
-    {
-        var builder = new ContainerBuilder();
-
         builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
 
         var mediatrOpenTypes = new[]
@@ -42,10 +32,6 @@ internal class CompositionModule : Autofac.Module
         }
 
         var services = new ServiceCollection();
-
         builder.Populate(services);
-
-        var container = builder.Build();
-        return container;
     }
 }

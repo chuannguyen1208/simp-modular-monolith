@@ -1,12 +1,7 @@
 ﻿using Autofac;
-using MediatR.Pipeline;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
-using System.Reflection;
-using Simp.Modules.Blogs.UseCases.Blogs.Queries;
-using Microsoft.Extensions.DependencyInjection;
-using Autofac.Extensions.DependencyInjection;
-using Simp.Modules.Blogs.Api.Modules;
+using Simp.Modules.Blogs.Api.Modules.Compositions;
+using Simp.Modules.Blogs.Api.Modules.MediatorHandlers;
 
 namespace Simp.Modules.Blogs.Api;
 
@@ -17,7 +12,7 @@ public static class Extensions
         builder.Host.ConfigureContainer<ContainerBuilder>((_, cb) =>
         {
             cb.RegisterModule<CompositionModule>();
-            cb.RegisterModule<MediatorModule>();
+            cb.RegisterModule<MediatorHandlerModule>();
         });
     }
 }
