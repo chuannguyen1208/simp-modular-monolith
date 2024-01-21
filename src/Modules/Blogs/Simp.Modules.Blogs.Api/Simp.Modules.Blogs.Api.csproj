@@ -12,8 +12,4 @@
 		<ProjectReference Include="..\Simp.Modules.Blogs.UseCases\Simp.Modules.Blogs.UseCases.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
-	</ItemGroup>
-
 </Project>
