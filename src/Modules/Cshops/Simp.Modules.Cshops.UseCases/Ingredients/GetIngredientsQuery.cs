@@ -1,14 +1,16 @@
 ﻿using MediatR;
-using Simp.Shared.Abstractions.Services;
+using Simp.Modules.Cshop.Domain.Entities;
+using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Cshops.UseCases.Ingredients;
-public class GetIngredientsQuery : IRequest<string>
+public class GetIngredientsQuery : IRequest<IEnumerable<Ingredient>>
 {
-    private class Handler(IMessageService messageService) : IRequestHandler<GetIngredientsQuery, string>
+    private class Handler(IRepository<Ingredient> repository) : IRequestHandler<GetIngredientsQuery, IEnumerable<Ingredient>>
     {
-        public async Task<string> Handle(GetIngredientsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Ingredient>> Handle(GetIngredientsQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(messageService.SayHello());
+            var entities = await repository.GetAllAsync().ConfigureAwait(false);
+            return entities;
         }
     }
 }

@@ -23,6 +23,7 @@ try
 
     var app = builder.Build();
 
+    app.UseCshopsModule();
     app.UseInfrastructure();
 
     app.MapGet("/", () => "Modular monolith api");
@@ -31,6 +32,7 @@ try
 }
 catch (Exception ex)
 {
+    Log.Fatal(ex.Message);
     Log.Fatal(ex, "An unhandled exception occurred during bootstrapping");
 }
 finally

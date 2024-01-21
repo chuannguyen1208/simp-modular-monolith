@@ -12,5 +12,11 @@
 		<ProjectReference Include="..\..\Modules\Cshops\Simp.Modules.Cshops.Api\Simp.Modules.Cshops.Api.csproj" />
 		<ProjectReference Include="..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
 	</ItemGroup>
-	
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 </Project>

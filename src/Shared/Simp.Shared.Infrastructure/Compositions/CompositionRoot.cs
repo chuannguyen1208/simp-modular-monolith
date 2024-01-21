@@ -34,4 +34,7 @@ public class CompositionRoot : ICompositionRoot
     {
         return new ContainerBuilder().Build();
     }
+
+    public ILifetimeScope GetLifetimeScope()
+        => _container.BeginLifetimeScope();
 }

@@ -32,15 +32,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Shared.Abstractions", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Blogs.UseCases", "src\Modules\Blogs\Simp.Modules.Blogs.UseCases\Simp.Modules.Blogs.UseCases.csproj", "{6BD0CE60-98DA-463B-9314-FC83AB625AD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Blogs.Infrastructure", "src\Modules\Blogs\Simp.Modules.Blogs.Infrastructure\Simp.Modules.Blogs.Infrastructure.csproj", "{98A1E783-6D32-494B-824E-135856D0AE09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Blogs.Infrastructure", "src\Modules\Blogs\Simp.Modules.Blogs.Infrastructure\Simp.Modules.Blogs.Infrastructure.csproj", "{98A1E783-6D32-494B-824E-135856D0AE09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cshops", "Cshops", "{A81AED38-5A8F-4CC1-AF6B-CC557B84606E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.Api", "src\Modules\Cshops\Simp.Modules.Cshops.Api\Simp.Modules.Cshops.Api.csproj", "{5B54CA95-F5B0-43A2-BB3B-3A25AC3311C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Cshops.Api", "src\Modules\Cshops\Simp.Modules.Cshops.Api\Simp.Modules.Cshops.Api.csproj", "{5B54CA95-F5B0-43A2-BB3B-3A25AC3311C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.Infrastructure", "src\Modules\Cshops\Simp.Modules.Cshops.Infrastructure\Simp.Modules.Cshops.Infrastructure.csproj", "{E5160BCB-B475-45E0-9C9C-254CC74DF90D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Cshops.Infrastructure", "src\Modules\Cshops\Simp.Modules.Cshops.Infrastructure\Simp.Modules.Cshops.Infrastructure.csproj", "{E5160BCB-B475-45E0-9C9C-254CC74DF90D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.UseCases", "src\Modules\Cshops\Simp.Modules.Cshops.UseCases\Simp.Modules.Cshops.UseCases.csproj", "{A14086E6-22F5-495D-AA40-C184B306EB6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Cshops.UseCases", "src\Modules\Cshops\Simp.Modules.Cshops.UseCases\Simp.Modules.Cshops.UseCases.csproj", "{A14086E6-22F5-495D-AA40-C184B306EB6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshop.Domain", "src\Modules\Cshops\Simp.Modules.Cshop.Domain\Simp.Modules.Cshop.Domain.csproj", "{13719706-3DD9-4391-BE52-DDA7CDC72185}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,10 @@ Global
 		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13719706-3DD9-4391-BE52-DDA7CDC72185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13719706-3DD9-4391-BE52-DDA7CDC72185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13719706-3DD9-4391-BE52-DDA7CDC72185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13719706-3DD9-4391-BE52-DDA7CDC72185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{5B54CA95-F5B0-43A2-BB3B-3A25AC3311C5} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
 		{E5160BCB-B475-45E0-9C9C-254CC74DF90D} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
 		{A14086E6-22F5-495D-AA40-C184B306EB6B} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
+		{13719706-3DD9-4391-BE52-DDA7CDC72185} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EDE88CF-EADC-4B07-AA25-67ED4E0C7C9A}
