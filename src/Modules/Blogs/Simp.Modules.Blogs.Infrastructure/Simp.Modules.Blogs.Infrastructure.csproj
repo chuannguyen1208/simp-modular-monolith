@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
