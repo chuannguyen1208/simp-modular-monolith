@@ -7,4 +7,5 @@ public interface IRepository<TEntity>
     Task CreateAsync(TEntity entity);
     Task UpdateAsync(TEntity entity);
     Task DeleteAsync(Guid id);
+    Task SaveChangesAsync();
 }

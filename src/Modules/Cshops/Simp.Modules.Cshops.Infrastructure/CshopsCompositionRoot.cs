@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Simp.Modules.Cshops.Infrastructure.EF;
 using Simp.Modules.Cshops.Infrastructure.Services;
-using Simp.Modules.Cshops.UseCases.Ingredients;
+using Simp.Modules.Cshops.UseCases.Ingredients.Queries;
+using Simp.Shared.Abstractions.Compositions;
 using Simp.Shared.Infrastructure.Compositions;
 using Simp.Shared.Infrastructure.Repositories;
 
 namespace Simp.Modules.Cshops.Infrastructure;
-public class CshopsCompositionRoot : CompositionRoot
+
+public interface ICshopsCompositionRoot : ICompositionRoot;
+
+public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
 {
     public override IContainer ConfigureContainer()
     {

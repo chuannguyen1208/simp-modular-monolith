@@ -40,4 +40,10 @@ public class Repository<TEntity>(DbContext dbContext) : IRepository<TEntity>
         _dbSet.Update(entity);
         await Task.CompletedTask;
     }
+
+    public async Task SaveChangesAsync()
+    {
+        await dbContext.SaveChangesAsync();
+    }
+
 }

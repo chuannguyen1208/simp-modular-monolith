@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Simp.Modules.Cshops.Infrastructure;
 using Simp.Modules.Cshops.Infrastructure.EF;
@@ -11,19 +10,19 @@ public static class Extensions
 {
     public static void AddCshopsModule(this WebApplicationBuilder builder)
     {
-        builder.Services.AddDbContext<CshopDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("cshop")));
-
-        builder.Host.ConfigureContainer<ContainerBuilder>((_, cb) =>
-        {
-            cb.RegisterType<CshopsCompositionRoot>().SingleInstance();
-        });
+        builder.Host
+            .ConfigureContainer<ContainerBuilder>((_, cb) =>
+            {
+                cb.RegisterType<CshopsCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
+            });
     }
 
     public static void UseCshopsModule(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<CshopDbContext>();
+        var compositionRoot = scope.ServiceProvider.GetRequiredService<ICshopsCompositionRoot>();
+        var compositionScope = compositionRoot.GetLifetimeScope();
+        var dbContext = compositionScope.Resolve<CshopDbContext>();
         dbContext.Database.Migrate();
     }
 }

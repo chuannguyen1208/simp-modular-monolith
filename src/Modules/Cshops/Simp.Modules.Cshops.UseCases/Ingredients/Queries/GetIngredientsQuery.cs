@@ -2,7 +2,7 @@
 using Simp.Modules.Cshop.Domain.Entities;
 using Simp.Shared.Abstractions.Repositories;
 
-namespace Simp.Modules.Cshops.UseCases.Ingredients;
+namespace Simp.Modules.Cshops.UseCases.Ingredients.Queries;
 public class GetIngredientsQuery : IRequest<IEnumerable<Ingredient>>
 {
     private class Handler(IRepository<Ingredient> repository) : IRequestHandler<GetIngredientsQuery, IEnumerable<Ingredient>>
