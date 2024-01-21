@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
+	  <ProjectReference Include="..\Simp.Modules.Blogs.UseCases\Simp.Modules.Blogs.UseCases.csproj" />
 	</ItemGroup>
 
 </Project>
