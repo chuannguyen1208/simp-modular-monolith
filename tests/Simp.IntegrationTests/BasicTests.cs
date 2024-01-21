@@ -1,4 +1,6 @@
-﻿namespace Simp.IntegrationTests;
+﻿using Simp.Modules.Cshop.Domain.Entities;
+
+namespace Simp.IntegrationTests;
 
 public class BasicTests(BootstrapperWebApplicationFactory<Program> factory) : IClassFixture<BootstrapperWebApplicationFactory<Program>>
 {
@@ -16,6 +18,23 @@ public class BasicTests(BootstrapperWebApplicationFactory<Program> factory) : IC
         // Assert
         response.EnsureSuccessStatusCode(); // Status Code 200-299
 
-        Assert.Equal("Modular monolith api", await response.Content.ReadFromJsonAsync<string>());
+        var responseString = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal("Modular monolith api", responseString);
+    }
+
+    [Fact]
+    public async Task GetIngredients()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/api/ingredients");
+
+        // Assert
+        response.EnsureSuccessStatusCode(); // Status Code 200-299
+
+        var ingredients = await response.Content.ReadFromJsonAsync<IEnumerable<Ingredient>>();
     }
 }

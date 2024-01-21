@@ -9,13 +9,11 @@ internal static class Extensions
 {
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
-        builder.Services.AddSwaggerGen();
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 
     public static void UseInfrastructure(this WebApplication app)
     {
         app.UseEndpoints();
-        app.UseSwagger().UseSwaggerUI();
     }
 }
