@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.Api", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.Infrastructure", "src\Modules\Cshops\Simp.Modules.Cshops.Infrastructure\Simp.Modules.Cshops.Infrastructure.csproj", "{E5160BCB-B475-45E0-9C9C-254CC74DF90D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Cshops.UseCases", "src\Modules\Cshops\Simp.Modules.Cshops.UseCases\Simp.Modules.Cshops.UseCases.csproj", "{A14086E6-22F5-495D-AA40-C184B306EB6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{E5160BCB-B475-45E0-9C9C-254CC74DF90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5160BCB-B475-45E0-9C9C-254CC74DF90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5160BCB-B475-45E0-9C9C-254CC74DF90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14086E6-22F5-495D-AA40-C184B306EB6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{A81AED38-5A8F-4CC1-AF6B-CC557B84606E} = {05CC14EB-DCD7-4844-9468-20678A8A5DAF}
 		{5B54CA95-F5B0-43A2-BB3B-3A25AC3311C5} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
 		{E5160BCB-B475-45E0-9C9C-254CC74DF90D} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
+		{A14086E6-22F5-495D-AA40-C184B306EB6B} = {A81AED38-5A8F-4CC1-AF6B-CC557B84606E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EDE88CF-EADC-4B07-AA25-67ED4E0C7C9A}
