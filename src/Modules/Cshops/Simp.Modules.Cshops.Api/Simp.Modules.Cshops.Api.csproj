@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\MediatorHandlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Simp.Modules.Cshops.Infrastructure\Simp.Modules.Cshops.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
