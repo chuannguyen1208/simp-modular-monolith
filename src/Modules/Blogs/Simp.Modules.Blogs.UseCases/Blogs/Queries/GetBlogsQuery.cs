@@ -1,14 +1,18 @@
 ﻿using MediatR;
-using Simp.Shared.Abstractions.Services;
+using Simp.Modules.Blogs.Domain.Entities;
+using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Queries;
-public class GetBlogsQuery : IRequest<string>
+public class GetBlogsQuery : IRequest<IEnumerable<Blog>>
 {
-    private class Handler(IMessageService messageService) : IRequestHandler<GetBlogsQuery, string>
+    private class Handler(IUnitOfWork unitOfWork) : IRequestHandler<GetBlogsQuery, IEnumerable<Blog>>
     {
-        public async Task<string> Handle(GetBlogsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Blog>> Handle(GetBlogsQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(messageService.SayHello());
+            var repository = unitOfWork.GetRepository<Blog>();
+            var entities = await repository.GetAllAsync();
+
+            return entities;
         }
     }
 }

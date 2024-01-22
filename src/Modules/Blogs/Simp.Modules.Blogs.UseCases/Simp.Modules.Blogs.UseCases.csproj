@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Abstractions\Simp.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\Simp.Modules.Blogs.Domain\Simp.Modules.Blogs.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
