@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Simp.Shared.Infrastructure.Routing;
 
@@ -9,10 +8,7 @@ internal static class Extensions
 {
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
-        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureContainer<ContainerBuilder>((_, builder) =>
-            {
-            });
+        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 
     public static void UseInfrastructure(this WebApplication app)
