@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Simp.Modules.Blogs.Infrastructure.Services;
+using Simp.Modules.Blogs.Infrastructure.AutofacModules;
 using Simp.Modules.Blogs.UseCases.Blogs.Queries;
 using Simp.Shared.Infrastructure.Compositions;
 
@@ -11,7 +11,7 @@ public class BlogsCompositionRoot : CompositionRoot
         var builder = new ContainerBuilder();
 
         builder.RegisterModule(new MediatorModule(typeof(GetBlogsQuery).Assembly));
-        builder.RegisterType<BlogsMessageService>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterModule<DbContextModule>();
 
         return builder.Build();
     }
