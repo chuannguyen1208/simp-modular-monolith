@@ -6,7 +6,7 @@ using Simp.Modules.Cshops.UseCases.Ingredients.Queries;
 using Simp.Shared.Infrastructure.Compositions;
 using Simp.Shared.Infrastructure.Repositories;
 
-namespace Simp.IntegrationTests.Compositions;
+namespace Simp.IntegrationTests.CshopsModule;
 
 public class CshopsFakeCompositionRoot : CompositionRoot, ICshopsCompositionRoot
 {

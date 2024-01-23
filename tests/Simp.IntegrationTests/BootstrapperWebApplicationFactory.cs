@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Simp.IntegrationTests.Compositions;
+using Simp.IntegrationTests.CshopsModule;
 using Simp.Modules.Cshops.Infrastructure;
 
 namespace Simp.IntegrationTests;
