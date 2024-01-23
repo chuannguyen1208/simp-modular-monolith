@@ -14,7 +14,7 @@ Log.Logger = new LoggerConfiguration()
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-    
+
     builder.Host.UseSerilog();
 
     builder.AddBlogsModule();
@@ -32,7 +32,6 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex.Message);
     Log.Fatal(ex, "An unhandled exception occurred during bootstrapping");
 }
 finally

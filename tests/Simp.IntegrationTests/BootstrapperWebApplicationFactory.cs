@@ -17,7 +17,7 @@ public class BootstrapperWebApplicationFactory<TProgram>
                 .AddConsole();
         });
 
-        builder.UseEnvironment("Development");
+        builder.UseEnvironment("Integration");
     }
 
     protected override IHost CreateHost(IHostBuilder builder)

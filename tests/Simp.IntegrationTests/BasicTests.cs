@@ -1,5 +1,4 @@
-﻿using Simp.Modules.Cshop.Domain.Entities;
-using Simp.Modules.Cshops.UseCases.Ingredients.Commands;
+﻿using Simp.Modules.Cshops.UseCases.Ingredients.Commands;
 
 namespace Simp.IntegrationTests;
 

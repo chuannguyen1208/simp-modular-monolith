@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Simp.Modules.Cshops.Infrastructure;
 using Simp.Modules.Cshops.Infrastructure.EF;
-using System;
 
 namespace Simp.Modules.Cshops.Api;
 public static class Extensions
@@ -15,6 +15,12 @@ public static class Extensions
             .ConfigureContainer<ContainerBuilder>((_, cb) =>
             {
                 cb.RegisterType<CshopsCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
+
+                var dbContextOptions = new DbContextOptionsBuilder<CshopDbContext>()
+                    .UseSqlServer(builder.Configuration.GetConnectionString("cshop"))
+                    .Options;
+
+                cb.RegisterInstance(dbContextOptions).SingleInstance();
             });
     }
 

@@ -45,7 +45,7 @@ namespace Simp.Modules.Blogs.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", (string)null);
                 });
 #pragma warning restore 612, 618
         }
