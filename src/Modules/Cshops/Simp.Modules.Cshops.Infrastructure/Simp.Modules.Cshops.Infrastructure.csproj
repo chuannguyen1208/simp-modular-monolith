@@ -7,8 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
-	  <ProjectReference Include="..\Simp.Modules.Cshops.UseCases\Simp.Modules.Cshops.UseCases.csproj" />
+		<ProjectReference Include="..\..\..\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj" />
+		<ProjectReference Include="..\Simp.Modules.Cshops.UseCases\Simp.Modules.Cshops.UseCases.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 </Project>
