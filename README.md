@@ -1,18 +1,43 @@
-## Modular nonolith with Clean Architecture and Event Domain
-Combine Blogs and Coffee-shop to a project using Modular Monolith
+# Project Title
 
-Reason*: Modular monolith is vertical scale so easy to extend more modules without impact current modules.
+A brief description of what this project is about.
 
-## Table of contents
+## Table of Contents
 
-[1. Isolation DI](#1-isolationDI)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-[2. Minimal APIs](#2-monimalApis)
+## Features
 
-[1. Integration test](#3-integrationTest)
+- List some key features of your project.
 
-## 1. Isolation DI
+## Getting Started
 
-## 2. Minimal Apis
+### Prerequisites
 
-## 3. Integration test
+- List any prerequisites or dependencies required to use your project.
+
+### Installation
+
+1. Provide step-by-step instructions on how to install your project.
+2. You can include code snippets or commands here if necessary.
+
+## Usage
+
+- Provide examples or instructions on how to use your project.
+- Include any relevant screenshots or code snippets.
+
+## Contributing
+
+- Explain how others can contribute to your project.
+- Include guidelines for pull requests and code style.
+
+## License
+
+- Specify the license under which your project is distributed.
+- Include any relevant license badges or links.
