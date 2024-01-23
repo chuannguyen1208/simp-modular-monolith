@@ -30,6 +30,11 @@ try
 
     app.Run();
 }
+catch (HostAbortedException)
+{
+    // https://github.com/dotnet/efcore/issues/29923
+    // Add migration throw this
+}
 catch (Exception ex)
 {
     Log.Fatal(ex, "An unhandled exception occurred during bootstrapping");
