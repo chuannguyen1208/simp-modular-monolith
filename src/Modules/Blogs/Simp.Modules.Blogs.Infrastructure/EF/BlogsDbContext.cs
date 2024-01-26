@@ -26,18 +26,16 @@ public class BlogsDbContext(DbContextOptions<BlogsDbContext> options, IMediator 
 
     private async Task PublishDomainEvents(CancellationToken cancellationToken)
     {
-        var tasks = new List<Task>();
+        List<EntityEntry<AggregateRoot>> aggregateRoots = ChangeTracker
+                .Entries<AggregateRoot>()
+                .Where(entityEntry => entityEntry.Entity.DomainEvents.Count != 0)
+                .ToList();
 
-        var aggregateRoots = ChangeTracker.Entries<AggregateRoot>()
-            .Where(e => e.Entity.DomainEvents.Count != 0)
-            .Select(e => e.Entity);
+        List<IDomainEvent> domainEvents = aggregateRoots.SelectMany(entityEntry => entityEntry.Entity.DomainEvents).ToList();
 
-        foreach (var aggregateRoot in aggregateRoots)
-        {
-            var events = aggregateRoot.DomainEvents.Select(s => mediator.Publish(s, cancellationToken));
-            tasks.AddRange(events);
-            aggregateRoot.ClearDomainEvents();
-        }
+        aggregateRoots.ForEach(entityEntry => entityEntry.Entity.ClearDomainEvents());
+
+        IEnumerable<Task> tasks = domainEvents.Select(domainEvent => mediator.Publish(domainEvent, cancellationToken));
 
         await Task.WhenAll(tasks);
     }
