@@ -24,6 +24,7 @@ try
     var app = builder.Build();
 
     app.UseCshopsModule();
+    app.UseBlogsModule();
     app.UseInfrastructure();
 
     app.MapGet("/", () => "Modular monolith api");

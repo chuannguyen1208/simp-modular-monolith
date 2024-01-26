@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Simp.Modules.Blogs.Domain.Entities;
+using Simp.Modules.Blogs.Domain.Blogs;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Queries;

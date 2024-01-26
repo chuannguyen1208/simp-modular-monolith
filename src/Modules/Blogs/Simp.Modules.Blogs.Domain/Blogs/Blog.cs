@@ -1,6 +1,7 @@
-﻿using Simp.Shared.Abstractions.Primitives;
+﻿using Simp.Modules.Blogs.Domain.Blogs.DomainEvents;
+using Simp.Shared.Abstractions.Primitives;
 
-namespace Simp.Modules.Blogs.Domain.Entities;
+namespace Simp.Modules.Blogs.Domain.Blogs;
 public class Blog : AggregateRoot
 {
     protected Blog(Guid id, string title, string description, string content, bool published) : base(id)
@@ -19,6 +20,12 @@ public class Blog : AggregateRoot
     public static Blog Create(string title, string description, string content, bool published)
     {
         var blog = new Blog(Guid.NewGuid(), title, description, content, published);
+        blog.RaiseDomainEvent(new BlogCreated(blog.Id));
         return blog;
+    }
+
+    public void UpdatePublished(bool published)
+    {
+        Published = published;
     }
 }

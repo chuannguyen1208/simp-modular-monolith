@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Simp.Modules.Blogs.Infrastructure;
 using Simp.Modules.Blogs.Infrastructure.EF;
 
@@ -13,7 +14,7 @@ public static class Extensions
     {
         builder.Host.ConfigureContainer<ContainerBuilder>((_, cb) =>
         {
-            cb.RegisterType<BlogsCompositionRoot>().SingleInstance();
+            cb.RegisterType<BlogsCompositionRoot>().As<IBlogsCompositionRoot>().SingleInstance();
 
             var dbContextOptions = new DbContextOptionsBuilder<BlogsDbContext>()
                 .UseSqlServer(builder.Configuration.GetConnectionString("blog"))
@@ -21,5 +22,21 @@ public static class Extensions
 
             cb.RegisterInstance(dbContextOptions).SingleInstance();
         });
+    }
+
+    public static void UseBlogsModule(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        
+        var compositionRoot = scope.ServiceProvider.GetRequiredService<IBlogsCompositionRoot>();
+        
+        using var compositionScope = compositionRoot.GetLifetimeScope();
+
+        var dbContext = compositionScope.Resolve<BlogsDbContext>();
+
+        if (dbContext.Database.IsRelational())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

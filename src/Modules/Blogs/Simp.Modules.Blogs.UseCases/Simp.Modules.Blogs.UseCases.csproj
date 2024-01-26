@@ -11,8 +11,4 @@
 		<ProjectReference Include="..\Simp.Modules.Blogs.Domain\Simp.Modules.Blogs.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Blogs\Commands\" />
-	</ItemGroup>
-
 </Project>

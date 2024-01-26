@@ -1,10 +1,14 @@
 ﻿using Autofac;
 using Simp.Modules.Blogs.Infrastructure.AutofacModules;
 using Simp.Modules.Blogs.UseCases.Blogs.Queries;
+using Simp.Shared.Abstractions.Compositions;
 using Simp.Shared.Infrastructure.Compositions;
 
 namespace Simp.Modules.Blogs.Infrastructure;
-public class BlogsCompositionRoot : CompositionRoot
+
+public interface IBlogsCompositionRoot : ICompositionRoot;
+
+public class BlogsCompositionRoot : CompositionRoot, IBlogsCompositionRoot
 {
     public override IContainer ConfigureContainer()
     {

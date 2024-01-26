@@ -9,6 +9,6 @@ internal class BlogEndpoints : IEndpointsDefinition
 {
     public static void ConfigureEndpoints(IEndpointRouteBuilder app)
     {
-        app.MapGet("/api/blogs", (BlogsCompositionRoot compositionRoot) => compositionRoot.ExecuteAsync(new GetBlogsQuery()));
+        app.MapGet("/api/blogs", (IBlogsCompositionRoot compositionRoot) => compositionRoot.ExecuteAsync(new GetBlogsQuery()));
     }
 }
