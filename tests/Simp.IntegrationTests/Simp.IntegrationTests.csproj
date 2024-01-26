@@ -32,8 +32,4 @@
 		<ProjectReference Include="..\..\src\Bootstrapper\Simp.Bootstrapper\Simp.Bootstrapper.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="BlogsModule\" />
-	</ItemGroup>
-
 </Project>

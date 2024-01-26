@@ -14,7 +14,7 @@ public interface ICshopsCompositionRoot : ICompositionRoot;
 
 public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
 {
-    public override IContainer ConfigureContainer()
+    protected override ContainerBuilder ConfigureContainerBuilder()
     {
         var builder = new ContainerBuilder();
 
@@ -40,6 +40,7 @@ public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
                 valueProvider: (pi, ctx) => ctx.Resolve<CshopDbContext>())
             .InstancePerLifetimeScope();
 
-        return builder.Build();
+        return builder;
     }
+
 }

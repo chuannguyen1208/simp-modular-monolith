@@ -30,11 +30,11 @@ public class CompositionRoot : ICompositionRoot
         return await mediator.Send(request);
     }
 
-    public virtual IContainer ConfigureContainer()
-    {
-        return new ContainerBuilder().Build();
-    }
+    public IContainer ConfigureContainer()
+        => ConfigureContainerBuilder().Build();
 
     public ILifetimeScope GetLifetimeScope()
         => _container.BeginLifetimeScope();
+
+    protected virtual ContainerBuilder ConfigureContainerBuilder() => new ContainerBuilder();
 }

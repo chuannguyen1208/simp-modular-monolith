@@ -10,13 +10,13 @@ public interface IBlogsCompositionRoot : ICompositionRoot;
 
 public class BlogsCompositionRoot : CompositionRoot, IBlogsCompositionRoot
 {
-    public override IContainer ConfigureContainer()
+    protected override ContainerBuilder ConfigureContainerBuilder()
     {
         var builder = new ContainerBuilder();
 
         builder.RegisterModule(new MediatorModule(typeof(GetBlogsQuery).Assembly));
         builder.RegisterModule<DbContextModule>();
 
-        return builder.Build();
+        return builder;
     }
 }
