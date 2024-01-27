@@ -20,7 +20,7 @@ public class BlogsDbContext(DbContextOptions<BlogsDbContext> options, IMediator 
     public override int SaveChanges()
     {
         var res = base.SaveChanges();
-        PublishDomainEvents(CancellationToken.None).RunSynchronously();
+        PublishDomainEvents(CancellationToken.None).GetAwaiter().GetResult();
         return res;
     }
 
