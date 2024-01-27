@@ -30,17 +30,12 @@ public class BlogsTestBase : IClassFixture<BootstrapperWebApplicationFactory<Pro
         if (!_context.Blogs.Any())
         {
             _context.Blogs.AddRange(
-                Blog.Create("B1", "D1", "C1", false),
-                Blog.Create("B2", "D2", "C2", false),
-                Blog.Create("B3", "D3", "C3", false)
+                Blog.Create("B1", "D1", "C1", false)
             );
 
             _context.SaveChanges();
         }
     }
 
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    public void Dispose() => _context.Dispose();
 }
