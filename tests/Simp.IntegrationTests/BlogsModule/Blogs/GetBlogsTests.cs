@@ -1,8 +1,4 @@
-﻿using Autofac;
-using Simp.Modules.Blogs.Contracts.Blogs;
-using Simp.Modules.Blogs.Domain.Blogs;
-using Simp.Modules.Blogs.Infrastructure;
-using Simp.Modules.Blogs.Infrastructure.EF;
+﻿using Simp.Modules.Blogs.Contracts.Blogs;
 
 namespace Simp.IntegrationTests.BlogsModule.Blogs;
 

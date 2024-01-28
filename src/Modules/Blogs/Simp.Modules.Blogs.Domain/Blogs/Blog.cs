@@ -20,8 +20,17 @@ public class Blog : AggregateRoot
     public static Blog Create(string title, string description, string content, bool published)
     {
         var blog = new Blog(Guid.NewGuid(), title, description, content, published);
+
         blog.RaiseDomainEvent(new BlogCreated(blog.Id));
+
         return blog;
+    }
+
+    public void Update(string title, string description, string content)
+    {
+        Title = title;
+        Description = description;
+        Content = content;
     }
 
     public void UpdatePublished(bool published)
