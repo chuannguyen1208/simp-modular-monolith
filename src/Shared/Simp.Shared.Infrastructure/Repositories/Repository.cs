@@ -7,6 +7,8 @@ public class Repository<TEntity>(DbContext dbContext) : IRepository<TEntity>
 {
     private readonly DbSet<TEntity> _dbSet = dbContext.Set<TEntity>();
 
+    public IQueryable<TEntity> Entities => _dbSet.AsNoTracking();
+
     public async Task CreateAsync(TEntity entity)
     {
         _dbSet.Add(entity);

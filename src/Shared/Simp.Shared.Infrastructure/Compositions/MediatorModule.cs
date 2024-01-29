@@ -4,6 +4,8 @@ using MediatR;
 using System.Reflection;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Simp.Shared.Infrastructure.Compositions.Mediators;
+using FluentValidation;
 
 namespace Simp.Shared.Infrastructure.Compositions;
 
@@ -19,8 +21,9 @@ public class MediatorModule(Assembly mediatorAssembly) : Autofac.Module
                 typeof(IRequestExceptionHandler<,,>),
                 typeof(IRequestExceptionAction<,>),
                 typeof(INotificationHandler<>),
-                typeof(IStreamRequestHandler<,>)
-            };
+                typeof(IStreamRequestHandler<,>),
+                typeof(IValidator<>)
+        };
 
         foreach (var mediatrOpenType in mediatrOpenTypes)
         {
@@ -29,6 +32,10 @@ public class MediatorModule(Assembly mediatorAssembly) : Autofac.Module
                 .AsClosedTypesOf(mediatrOpenType)
                 .AsImplementedInterfaces();
         }
+
+        builder.RegisterGeneric(typeof(ValidationBehaviour<,>))
+            .As(typeof(IPipelineBehavior<,>))
+            .SingleInstance();
 
         var services = new ServiceCollection();
 

@@ -5,37 +5,32 @@ using Simp.Modules.Blogs.Infrastructure.EF;
 
 namespace Simp.IntegrationTests.BlogsModule;
 
-public class BlogsTestBase : IClassFixture<BootstrapperWebApplicationFactory<Program>>, IDisposable
+public class BlogsTestBase : IClassFixture<BootstrapperWebApplicationFactory<Program>>
 {
-    protected BlogsDbContext _context;
     protected BootstrapperWebApplicationFactory<Program> _factory;
+    protected IBlogsCompositionRoot _compositionRoot;
 
     public BlogsTestBase(BootstrapperWebApplicationFactory<Program> factory)
     {
         _factory = factory;
-
-        using var scope = factory.Services.CreateScope();
-
-        var composition = scope.ServiceProvider.GetRequiredService<IBlogsCompositionRoot>();
-
-        using var compositionScope = composition.GetLifetimeScope();
-
-        _context = compositionScope.Resolve<BlogsDbContext>();
+        _compositionRoot = factory.Services.GetRequiredService<IBlogsCompositionRoot>();
 
         Initial();
     }
 
     private void Initial()
     {
-        if (!_context.Blogs.Any())
+        using var scope = _compositionRoot.GetLifetimeScope();
+        var context = scope.Resolve<BlogsDbContext>();
+
+        if (!context.Blogs.Any())
         {
-            _context.Blogs.AddRange(
+            context.Blogs.AddRange(
                 Blog.Create("B1", "D1", "C1", false)
             );
 
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 
-    public void Dispose() => _context.Dispose();
 }

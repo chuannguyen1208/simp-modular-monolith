@@ -16,6 +16,7 @@ public class BlogsCompositionRoot : CompositionRoot, IBlogsCompositionRoot
 
         builder.RegisterModule(new MediatorModule(typeof(GetBlogsQuery).Assembly));
         builder.RegisterModule<DbContextModule>();
+        builder.RegisterModule<AutoMapperModule>();
 
         return builder;
     }
