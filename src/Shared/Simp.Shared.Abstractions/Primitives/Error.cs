@@ -1,2 +1,2 @@
 ﻿namespace Simp.Shared.Abstractions.Primitives;
-public record Error(string ErrorCode, string ErrorMessage);
+public record Error(int Status, string Message);

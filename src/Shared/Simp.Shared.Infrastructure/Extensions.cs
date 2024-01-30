@@ -27,20 +27,13 @@ internal static class Extensions
 
                 var ex = exceptionFeature.Error;
 
-                int statusCode = StatusCodes.Status500InternalServerError;
-                var errors = new List<Error>();
-
-                if (ex is ValidationException vex)
+                var error = ex switch
                 {
-                    statusCode = StatusCodes.Status400BadRequest;
-                    errors.AddRange(vex.Errors.Select(e => new Error(e.ErrorCode, e.ErrorMessage)));
-                }
-                else
-                {
-                    errors.Add(new Error("InternalServerError", "Internal Server Error"));
-                }
+                    ValidationException vex => new Error(400, vex.Message),
+                    _ => new Error(500, "Internal Server Error")
+                };
 
-                await Results.Problem(statusCode: statusCode, detail: JsonSerializer.Serialize(errors)).ExecuteAsync(context);
+                await Results.Problem(statusCode: error.Status, detail: error.Message).ExecuteAsync(context);
             });
         });
 
