@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Simp.Shared.Abstractions.Primitives;
 using Simp.Shared.Infrastructure.Routing;
+using System.Text.Json;
 
 namespace Simp.Shared.Infrastructure;
 
@@ -25,13 +27,20 @@ internal static class Extensions
 
                 var ex = exceptionFeature.Error;
 
-                int statusCode = ex switch
-                {
-                    ValidationException => StatusCodes.Status400BadRequest,
-                    _ => 500
-                };
+                int statusCode = StatusCodes.Status500InternalServerError;
+                var errors = new List<Error>();
 
-                await Results.Problem(statusCode: statusCode, detail: ex.Message).ExecuteAsync(context);
+                if (ex is ValidationException vex)
+                {
+                    statusCode = StatusCodes.Status400BadRequest;
+                    errors.AddRange(vex.Errors.Select(e => new Error(e.ErrorCode, e.ErrorMessage)));
+                }
+                else
+                {
+                    errors.Add(new Error("InternalServerError", "Internal Server Error"));
+                }
+
+                await Results.Problem(statusCode: statusCode, detail: JsonSerializer.Serialize(errors)).ExecuteAsync(context);
             });
         });
 
