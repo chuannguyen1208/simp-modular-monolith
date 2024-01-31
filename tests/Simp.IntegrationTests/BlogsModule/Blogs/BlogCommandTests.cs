@@ -1,10 +1,9 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Simp.Modules.Blogs.Infrastructure.EF;
 using Simp.Modules.Blogs.UseCases.Blogs.Commands;
-using Simp.Shared.Abstractions.Primitives;
 using System.Net;
-using System.Text.Json;
 
 namespace Simp.IntegrationTests.BlogsModule.Blogs;
 
@@ -22,7 +21,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         var blogId = await response.Content.ReadFromJsonAsync<Guid>();
 
         using var scope = _compositionRoot.GetLifetimeScope();
-        
+
         var dbContext = scope.Resolve<BlogsDbContext>();
 
         var blog = await dbContext.Blogs.FindAsync(blogId);
@@ -51,5 +50,47 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
 
         Assert.NotNull(problem);
+    }
+
+    [Fact]
+    public async Task Edit_Ok()
+    {
+        using var scope = _compositionRoot.GetLifetimeScope();
+
+        var context = scope.Resolve<BlogsDbContext>();
+
+        var blog = context.Blogs.AsNoTracking().First();
+
+        var client = _factory.CreateClient();
+
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand("Title update", "Description update", "Content update"));
+
+        response.EnsureSuccessStatusCode();
+
+        blog = context.Blogs.AsNoTracking().First(s => s.Id == blog.Id);
+
+        Assert.Equal("Title update", blog.Title);
+        Assert.Equal("Description update", blog.Description);
+        Assert.Equal("Content update", blog.Content);
+    }
+
+    [Fact]
+    public async Task Delete_Ok()
+    {
+        using var scope = _compositionRoot.GetLifetimeScope();
+
+        var context = scope.Resolve<BlogsDbContext>();
+
+        var blog = context.Blogs.AsNoTracking().First();
+
+        var client = _factory.CreateClient();
+
+        var response = await client.DeleteAsync($"/api/blogs/{blog.Id}");
+
+        response.EnsureSuccessStatusCode();
+
+        blog = context.Blogs.AsNoTracking().FirstOrDefault(s => s.Id == blog.Id);
+
+        Assert.Null(blog);
     }
 }

@@ -17,6 +17,7 @@ public class MediatorModule(Assembly mediatorAssembly) : Autofac.Module
 
         var mediatrOpenTypes = new[]
         {
+                typeof(IRequestHandler<>),
                 typeof(IRequestHandler<,>),
                 typeof(IRequestExceptionHandler<,,>),
                 typeof(IRequestExceptionAction<,>),

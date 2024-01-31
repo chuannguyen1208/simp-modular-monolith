@@ -12,6 +12,7 @@ internal class BlogEndpoints : IEndpointsDefinition
     public static void ConfigureEndpoints(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/blogs", async (IBlogsCompositionRoot compositionRoot) => await compositionRoot.ExecuteAsync(new GetBlogsQuery()));
+
         app.MapGet("/api/blogs/{id}", async (Guid id, IBlogsCompositionRoot compositionRoot) =>
         {
             var res = await compositionRoot.ExecuteAsync(new GetBlogQuery(id));
@@ -25,5 +26,23 @@ internal class BlogEndpoints : IEndpointsDefinition
         });
 
         app.MapPost("/api/blogs", async (CreateBlogCommand command, IBlogsCompositionRoot compositionRoot) => await compositionRoot.ExecuteAsync(command));
+
+        app.MapPut("/api/blogs/{id}", async (Guid id, UpdateBlogCommand command, IBlogsCompositionRoot compositionRoot) =>
+        {
+            command.Id = id;
+
+            await compositionRoot.ExecuteAsync(command);
+
+            return Results.NoContent();
+        });
+
+        app.MapDelete("/api/blogs/{id}", async (Guid id, IBlogsCompositionRoot compositionRoot) =>
+        {
+            var command = new DeleteBlogCommand(id);
+
+            await compositionRoot.ExecuteAsync(command);
+
+            return Results.NoContent();
+        });
     }
 }

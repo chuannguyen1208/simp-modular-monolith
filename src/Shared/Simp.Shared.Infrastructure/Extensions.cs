@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Simp.Shared.Abstractions.Primitives;
 using Simp.Shared.Infrastructure.Routing;
-using System.Text.Json;
 
 namespace Simp.Shared.Infrastructure;
 
