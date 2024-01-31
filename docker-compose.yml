@@ -3,6 +3,7 @@ version: '3.4'
 services:
   simp.bootstrapper:
     image: ${DOCKER_REGISTRY-}simpbootstrapper
+    container_name: simpbootstrapper
     build:
       context: .
       dockerfile: src/Bootstrapper/Simp.Bootstrapper/Dockerfile
@@ -12,6 +13,8 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2017-latest
     container_name: mssql
+    ports:
+      - 1433:1433
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
