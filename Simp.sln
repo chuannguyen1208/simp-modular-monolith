@@ -17,11 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Bootstrapper", "src\Bo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Shared.Infrastructure", "src\Shared\Simp.Shared.Infrastructure\Simp.Shared.Infrastructure.csproj", "{B2604B20-62BE-451D-BE88-7FBA42D5D13F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{F76C7603-FAB1-47BF-86EF-45FDECA6406B}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.IntegrationTests", "tests\Simp.IntegrationTests\Simp.IntegrationTests.csproj", "{E0D8088B-DD96-4165-9F92-8E7D92E49EE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blogs", "Blogs", "{EBB86D6B-89E9-4690-AA29-4F12B3C74541}"
@@ -46,7 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Cshop.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Blogs.Domain", "src\Modules\Blogs\Simp.Modules.Blogs.Domain\Simp.Modules.Blogs.Domain.csproj", "{23829844-967C-4A10-B492-985AFB2779CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simp.Modules.Blogs.Contracts", "src\Modules\Blogs\Simp.Modules.Blogs.Contracts\Simp.Modules.Blogs.Contracts.csproj", "{CC868CC7-E332-4C83-9CF3-B58AF17B126B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simp.Modules.Blogs.Contracts", "src\Modules\Blogs\Simp.Modules.Blogs.Contracts\Simp.Modules.Blogs.Contracts.csproj", "{CC868CC7-E332-4C83-9CF3-B58AF17B126B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D9AB98B7-1448-46AD-BE50-F15718D564FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +103,10 @@ Global
 		{CC868CC7-E332-4C83-9CF3-B58AF17B126B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC868CC7-E332-4C83-9CF3-B58AF17B126B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC868CC7-E332-4C83-9CF3-B58AF17B126B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9AB98B7-1448-46AD-BE50-F15718D564FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9AB98B7-1448-46AD-BE50-F15718D564FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9AB98B7-1448-46AD-BE50-F15718D564FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9AB98B7-1448-46AD-BE50-F15718D564FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

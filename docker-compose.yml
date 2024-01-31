@@ -1,16 +1,23 @@
-version: '3.8'
+version: '3.4'
 
 services:
+  simp.bootstrapper:
+    image: ${DOCKER_REGISTRY-}simpbootstrapper
+    build:
+      context: .
+      dockerfile: src/Bootstrapper/Simp.Bootstrapper/Dockerfile
+    networks:
+     - simp
+
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2017-latest
     container_name: mssql
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
-    ports:
-      - "1433:1433"
     networks:
       - simp
+
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: rabbitmq
@@ -23,6 +30,7 @@ services:
       RABBITMQ_DEFAULT_PASS: rabbitmq
     networks:
       - simp
+
   seq:
     image: datalust/seq:latest
     container_name: seq
