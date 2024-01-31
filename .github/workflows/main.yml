@@ -19,10 +19,10 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore .\src\Bootstrapper\Simp.Bootstrapper\Simp.Bootstrapper.csproj
       
       - name: Build
         run: dotnet build --configuration Release
       
       - name: Test
-        run: dotnet test ./tests/Simp.IntegrationTests/Simp.IntegrationTests.csproj
+        run: dotnet test .\tests\Simp.IntegrationTests\Simp.IntegrationTests.csproj
