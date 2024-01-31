@@ -22,5 +22,6 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="6.0.0" />
 	</ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Serilog;
 using Simp.Shared.Abstractions.Primitives;
 using Simp.Shared.Infrastructure.Routing;
 
@@ -14,10 +15,13 @@ internal static class Extensions
     public static void AddInfrastructure(this WebApplicationBuilder builder)
     {
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+        builder.Host.UseSerilog();
     }
 
     public static void UseInfrastructure(this WebApplication app)
     {
+        app.UseSerilogRequestLogging();
+
         app.UseExceptionHandler(configure =>
         {
             configure.Run(async context =>
