@@ -22,7 +22,7 @@ jobs:
         run: dotnet restore ./src/Bootstrapper/Simp.Bootstrapper/Simp.Bootstrapper.csproj
       
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build ./src/Bootstrapper/Simp.Bootstrapper/Simp.Bootstrapper.csproj --configuration Release
       
       - name: Test
         run: dotnet test ./tests/Simp.IntegrationTests/Simp.IntegrationTests.csproj
