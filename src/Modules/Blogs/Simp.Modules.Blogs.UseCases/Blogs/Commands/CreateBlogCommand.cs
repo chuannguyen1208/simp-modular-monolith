@@ -10,9 +10,17 @@ public record CreateBlogCommand(string Title, string Description, string Content
     {
         public CreateBlogCommandValidator()
         {
-            RuleFor(s => s.Title).NotNull().NotEmpty().WithMessage("Title is required");
-            RuleFor(s => s.Description).NotNull().NotEmpty().WithMessage("Description is required");
-            RuleFor(s => s.Content).NotNull().NotEmpty().WithMessage("Content is required");
+            RuleFor(s => s.Title)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(s => s.Description)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(s => s.Content)
+                .NotNull()
+                .NotEmpty();
         }
     }
 

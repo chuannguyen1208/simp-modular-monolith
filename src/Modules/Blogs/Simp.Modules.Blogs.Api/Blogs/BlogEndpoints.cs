@@ -29,9 +29,9 @@ internal class BlogEndpoints : IEndpointsDefinition
 
         app.MapPut("/api/blogs/{id}", async (Guid id, UpdateBlogCommand command, IBlogsCompositionRoot compositionRoot) =>
         {
-            command.Id = id;
+            var updateCommand = command with { Id = id };
 
-            await compositionRoot.ExecuteAsync(command);
+            await compositionRoot.ExecuteAsync(updateCommand);
 
             return Results.NoContent();
         });

@@ -1,31 +1,36 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Simp.Modules.Blogs.Domain.Blogs;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
-public record UpdateBlogCommand : IRequest
+
+public record UpdateBlogCommand(Guid Id, string Title, string Description, string Content) : IRequest
 {
-    public UpdateBlogCommand(string title, string description, string content)
+    public class UpdateBlogCommandValidator : AbstractValidator<UpdateBlogCommand>
     {
-        Title = title;
-        Description = description;
-        Content = content;
+        public UpdateBlogCommandValidator()
+        {
+            RuleFor(s => s.Title)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(s => s.Description)
+                .NotEmpty()
+                .NotNull();
+
+            RuleFor(s => s.Content)
+                .NotEmpty()
+                .NotNull();
+        }
     }
-
-    public Guid Id { get; set; }
-
-    public string Title { get; set; }
-
-    public string Description { get; set; }
-
-    public string Content { get; set; }
 
     private class Handler(IUnitOfWork unitOfWork) : IRequestHandler<UpdateBlogCommand>
     {
         public async Task Handle(UpdateBlogCommand request, CancellationToken cancellationToken)
         {
             var repo = unitOfWork.GetRepository<Blog>();
-            
+
             var entity = await repo.GetByIdAsync(request.Id).ConfigureAwait(false);
 
             if (entity is null)
@@ -39,3 +44,4 @@ public record UpdateBlogCommand : IRequest
         }
     }
 }
+

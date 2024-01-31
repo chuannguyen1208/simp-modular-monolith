@@ -63,7 +63,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
 
         var client = _factory.CreateClient();
 
-        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand("Title update", "Description update", "Content update"));
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, "Title update", "Description update", "Content update"));
 
         response.EnsureSuccessStatusCode();
 
@@ -72,6 +72,26 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         Assert.Equal("Title update", blog.Title);
         Assert.Equal("Description update", blog.Description);
         Assert.Equal("Content update", blog.Content);
+    }
+
+    [Fact]
+    public async Task Edit_EmptyTitle_ValidationError()
+    {
+        using var scope = _compositionRoot.GetLifetimeScope();
+
+        var context = scope.Resolve<BlogsDbContext>();
+
+        var blog = context.Blogs.AsNoTracking().First();
+
+        var client = _factory.CreateClient();
+
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, string.Empty, "Description update", "Content update"));
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+        var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+
+        Assert.NotNull(problem);
     }
 
     [Fact]
