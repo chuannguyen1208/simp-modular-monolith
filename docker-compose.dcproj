@@ -5,7 +5,7 @@
 		<DockerTargetOS>Linux</DockerTargetOS>
 		<DockerPublishLocally>False</DockerPublishLocally>
 		<ProjectGuid>d9ab98b7-1448-46ad-be50-f15718d564fd</ProjectGuid>
-		<DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+		<DockerLaunchAction>None</DockerLaunchAction>
 		<DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
 		<DockerServiceName>simp.bootstrapper</DockerServiceName>
 		<DockerComposeProjectName>simp</DockerComposeProjectName>
