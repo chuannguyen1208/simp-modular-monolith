@@ -1,12 +1,20 @@
 ﻿using FluentValidation;
 using MediatR;
+using Simp.Modules.Blogs.Contracts.Blogs;
 using Simp.Modules.Blogs.Domain.Blogs;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
 
-public record UpdateBlogCommand(Guid Id, string Title, string Description, string Content) : IRequest
+public record UpdateBlogCommand : BlogRequest, IRequest
 {
+    public UpdateBlogCommand(Guid Id, string Title, string Description, string Content) : base(Title, Description, Content)
+    {
+        this.Id = Id;
+    }
+
+    public Guid Id { get; set; }
+
     public class UpdateBlogCommandValidator : AbstractValidator<UpdateBlogCommand>
     {
         public UpdateBlogCommandValidator()

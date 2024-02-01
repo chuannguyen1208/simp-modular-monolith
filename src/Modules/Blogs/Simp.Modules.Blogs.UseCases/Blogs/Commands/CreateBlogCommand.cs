@@ -1,11 +1,16 @@
 ﻿using FluentValidation;
 using MediatR;
+using Simp.Modules.Blogs.Contracts.Blogs;
 using Simp.Modules.Blogs.Domain.Blogs;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
-public record CreateBlogCommand(string Title, string Description, string Content) : IRequest<Guid>
+public record CreateBlogCommand : BlogRequest, IRequest<Guid>
 {
+    public CreateBlogCommand(string Title, string Description, string Content) : base(Title, Description, Content)
+    {
+    }
+
     public class CreateBlogCommandValidator : AbstractValidator<CreateBlogCommand>
     {
         public CreateBlogCommandValidator()
