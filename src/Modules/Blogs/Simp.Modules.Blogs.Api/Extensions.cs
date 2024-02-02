@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using Simp.Modules.Blogs.Infrastructure;
 using Simp.Modules.Blogs.Infrastructure.EF;
 
@@ -33,6 +34,8 @@ public static class Extensions
         using var compositionScope = compositionRoot.GetLifetimeScope();
 
         var dbContext = compositionScope.Resolve<BlogsDbContext>();
+
+        Log.Information("Blog connection string: " + dbContext.Database.GetConnectionString()!);
 
         if (dbContext.Database.IsRelational())
         {
