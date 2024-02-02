@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Serilog;
 using Simp.Modules.Blogs.Infrastructure.EF;
 using Simp.Shared.Infrastructure.Repositories;
 
@@ -17,7 +16,7 @@ internal class DbContextModule : Module
 
         var connectionString = configuration.GetConnectionString("blog");
 
-        Log.Information($"Blog connection string: {connectionString}");
+        Console.WriteLine($"Blog connection string: {connectionString}");
 
         var dbContextOptions = new DbContextOptionsBuilder<BlogsDbContext>()
             .UseSqlServer(connectionString)

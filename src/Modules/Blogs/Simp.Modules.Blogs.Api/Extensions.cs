@@ -34,8 +34,6 @@ public static class Extensions
 
         var dbContext = compositionScope.Resolve<BlogsDbContext>();
 
-        Console.WriteLine("Blog connection string: " + dbContext.Database.GetConnectionString());
-
         if (dbContext.Database.IsRelational())
         {
             dbContext.Database.Migrate();
