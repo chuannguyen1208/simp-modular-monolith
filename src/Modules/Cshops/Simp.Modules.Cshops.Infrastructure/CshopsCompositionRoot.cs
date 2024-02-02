@@ -13,7 +13,7 @@ namespace Simp.Modules.Cshops.Infrastructure;
 
 public interface ICshopsCompositionRoot : ICompositionRoot;
 
-public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
+public class CshopsCompositionRoot(IConfiguration configuration) : CompositionRoot, ICshopsCompositionRoot
 {
     protected override ContainerBuilder ConfigureContainerBuilder()
     {
@@ -21,10 +21,6 @@ public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
 
         builder.RegisterModule(new MediatorModule(typeof(GetIngredientsQuery).Assembly));
         builder.RegisterType<CshopsMessageService>().AsImplementedInterfaces().SingleInstance();
-
-        var configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .Build();
 
         var connectionString = configuration.GetConnectionString("cshop");
 

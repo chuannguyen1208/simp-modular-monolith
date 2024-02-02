@@ -5,7 +5,7 @@ using Simp.Modules.Cshops.Infrastructure.EF;
 
 namespace Simp.IntegrationTests.CshopsModule;
 
-public class CshopsFakeCompositionRoot : CshopsCompositionRoot
+public class CshopsFakeCompositionRoot(IConfiguration configuration) : CshopsCompositionRoot(configuration)
 {
     protected override ContainerBuilder ConfigureContainerBuilder()
     {
