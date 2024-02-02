@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 using Simp.Modules.Cshops.Infrastructure.EF;
 using Simp.Modules.Cshops.Infrastructure.Services;
 using Simp.Modules.Cshops.UseCases.Ingredients.Queries;
@@ -25,8 +26,14 @@ public class CshopsCompositionRoot : CompositionRoot, ICshopsCompositionRoot
             .AddJsonFile("appsettings.json")
             .Build();
 
+        var connectionString = configuration.GetConnectionString("cshop");
+
+        Log.Information($"Cshop connection string: {connectionString}");
+
+        Console.WriteLine($"Cshop connection string: {connectionString}");
+
         var dbContextOptions = new DbContextOptionsBuilder<CshopDbContext>()
-            .UseSqlServer(configuration.GetConnectionString("cshop"))
+            .UseSqlServer(connectionString)
             .Options;
 
         builder.RegisterInstance(dbContextOptions).SingleInstance();
