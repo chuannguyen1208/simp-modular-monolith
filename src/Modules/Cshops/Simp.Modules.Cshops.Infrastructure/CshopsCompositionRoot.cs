@@ -26,8 +26,6 @@ public class CshopsCompositionRoot(IConfiguration configuration) : CompositionRo
 
         Log.Information($"Cshop connection string: {connectionString}");
 
-        Console.WriteLine($"Cshop connection string: {connectionString}");
-
         var dbContextOptions = new DbContextOptionsBuilder<CshopDbContext>()
             .UseSqlServer(connectionString)
             .Options;

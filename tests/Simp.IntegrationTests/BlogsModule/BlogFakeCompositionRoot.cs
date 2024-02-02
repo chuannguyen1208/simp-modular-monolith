@@ -5,7 +5,7 @@ using Simp.Modules.Blogs.Infrastructure.EF;
 
 namespace Simp.IntegrationTests.BlogsModule;
 
-public class BlogFakeCompositionRoot : BlogsCompositionRoot
+public class BlogFakeCompositionRoot(IConfiguration configuration) : BlogsCompositionRoot(configuration)
 {
     protected override ContainerBuilder ConfigureContainerBuilder()
     {
