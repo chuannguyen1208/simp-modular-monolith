@@ -34,8 +34,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build the Docker image
-        run: docker build -t trongchuannguyen/simp:latest .
-        working-directory: ./path/to/dockerfile-directory
+        run: docker build -f ./src/Bootstrapper/Simp.Bootstrapper/Dockerfile -t trongchuannguyen/simp:latest .
 
       - name: Push the Docker image
-        run: docker push docker push trongchuannguyen/simp:latest
+        run: docker push trongchuannguyen/simp:latest
