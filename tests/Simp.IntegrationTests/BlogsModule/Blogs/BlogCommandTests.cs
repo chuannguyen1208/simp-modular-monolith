@@ -16,7 +16,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.PostAsJsonAsync<CreateBlogCommand>("/api/blogs", new CreateBlogCommand("Title", "Description", "Content"));
+        var response = await client.PostAsJsonAsync("/api/blogs", new CreateBlogCommand("Title", "Description", "This is a text with some *emphasis*"));
 
         var blogId = await response.Content.ReadFromJsonAsync<Guid>();
 
@@ -32,7 +32,8 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         Assert.NotNull(blog);
         Assert.Equal("Title", blog.Title);
         Assert.Equal("Description", blog.Description);
-        Assert.Equal("Content", blog.Content);
+        Assert.Equal("This is a text with some *emphasis*", blog.Content);
+        Assert.Equal("<p>This is a text with some <em>emphasis</em></p>\n", blog.ContentHtml);
     }
 
     [Fact]
@@ -63,7 +64,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
 
         var client = _factory.CreateClient();
 
-        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, "Title update", "Description update", "Content update"));
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, "Title update", "Description update", "This is a text with some *emphasis*"));
 
         response.EnsureSuccessStatusCode();
 
@@ -71,7 +72,8 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
 
         Assert.Equal("Title update", blog.Title);
         Assert.Equal("Description update", blog.Description);
-        Assert.Equal("Content update", blog.Content);
+        Assert.Equal("This is a text with some *emphasis*", blog.Content);
+        Assert.Equal("<p>This is a text with some <em>emphasis</em></p>\n", blog.ContentHtml);
     }
 
     [Fact]

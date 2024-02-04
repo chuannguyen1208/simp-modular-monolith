@@ -17,6 +17,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+
+		<PackageReference Include="Markdig" Version="0.34.0" />
 	</ItemGroup>
 
 </Project>

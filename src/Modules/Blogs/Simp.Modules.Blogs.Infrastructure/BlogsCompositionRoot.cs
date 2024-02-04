@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Simp.Modules.Blogs.Infrastructure.AutofacModules;
+using Simp.Modules.Blogs.Infrastructure.Contents;
 using Simp.Modules.Blogs.Infrastructure.EF;
 using Simp.Modules.Blogs.UseCases.Blogs.Queries;
 using Simp.Shared.Abstractions.Compositions;
@@ -28,13 +29,16 @@ public class BlogsCompositionRoot(IConfiguration configuration) : CompositionRoo
             .Options;
 
         builder.RegisterInstance(dbContextOptions).SingleInstance();
+
         builder.RegisterType<BlogsDbContext>().InstancePerLifetimeScope();
 
+        builder.RegisterType<ContentProcessor>().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterGeneric(typeof(Repository<>))
-            .WithParameter(
-                parameterSelector: (pi, ctx) => pi.ParameterType == typeof(DbContext),
-                valueProvider: (pi, ctx) => ctx.Resolve<BlogsDbContext>())
-            .InstancePerLifetimeScope();
+           .WithParameter(
+               parameterSelector: (pi, ctx) => pi.ParameterType == typeof(DbContext),
+               valueProvider: (pi, ctx) => ctx.Resolve<BlogsDbContext>())
+           .InstancePerLifetimeScope();
 
         builder.RegisterType<UnitOfWork>()
             .AsImplementedInterfaces()
@@ -43,7 +47,6 @@ public class BlogsCompositionRoot(IConfiguration configuration) : CompositionRoo
                 valueProvider: (pi, ctx) => ctx.Resolve<BlogsDbContext>());
 
         builder.RegisterModule(new MediatorModule(typeof(GetBlogsQuery).Assembly));
-        
         builder.RegisterModule<AutoMapperModule>();
 
         return builder;

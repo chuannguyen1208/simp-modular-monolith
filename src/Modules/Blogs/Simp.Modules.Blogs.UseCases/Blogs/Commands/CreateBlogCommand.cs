@@ -2,6 +2,7 @@
 using MediatR;
 using Simp.Modules.Blogs.Contracts.Blogs;
 using Simp.Modules.Blogs.Domain.Blogs;
+using Simp.Modules.Blogs.Domain.Contents;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
@@ -29,12 +30,15 @@ public record CreateBlogCommand : BlogRequest, IRequest<Guid>
         }
     }
 
-    private class Handler(IUnitOfWork unitOfWork) : IRequestHandler<CreateBlogCommand, Guid>
+    private class Handler(IUnitOfWork unitOfWork, IContentProcessor contentProcessor) : IRequestHandler<CreateBlogCommand, Guid>
     {
         public async Task<Guid> Handle(CreateBlogCommand request, CancellationToken cancellationToken)
         {
             var repo = unitOfWork.GetRepository<Blog>();
-            var blog = Blog.Create(request.Title, request.Description, request.Content, false);
+
+            var contentHtml = await contentProcessor.ProcessContent(request.Content);
+
+            var blog = Blog.Create(request.Title, request.Description, request.Content, contentHtml, false);
 
             await repo.CreateAsync(blog);
             await unitOfWork.SaveChangesAsync();
