@@ -6,12 +6,10 @@ using Simp.Modules.Blogs.Domain.Contents;
 using Simp.Shared.Abstractions.Repositories;
 
 namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
-public record CreateBlogCommand : BlogRequest, IRequest<Guid>
+public record CreateBlogCommand(string Title, string Description, string Content, bool Published, bool IsTemplate) :
+    BlogRequest(Title, Description, Content, Published, IsTemplate),
+    IRequest<Guid>
 {
-    public CreateBlogCommand(string Title, string Description, string Content) : base(Title, Description, Content)
-    {
-    }
-
     public class CreateBlogCommandValidator : AbstractValidator<CreateBlogCommand>
     {
         public CreateBlogCommandValidator()
@@ -38,7 +36,10 @@ public record CreateBlogCommand : BlogRequest, IRequest<Guid>
 
             var contentHtml = await contentProcessor.ProcessContent(request.Content);
 
-            var blog = Blog.Create(request.Title, request.Description, request.Content, contentHtml, false);
+            var blog = Blog.Create(request.Title, request.Description, request.Content, contentHtml);
+
+            blog.UpdatePublished(request.Published);
+            blog.UpdateIsTemplate(blog.IsTemplate);
 
             await repo.CreateAsync(blog);
             await unitOfWork.SaveChangesAsync();

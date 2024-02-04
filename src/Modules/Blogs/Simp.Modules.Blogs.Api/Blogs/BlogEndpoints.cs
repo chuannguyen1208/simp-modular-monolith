@@ -25,6 +25,10 @@ internal class BlogEndpoints : IEndpointsDefinition
             return Results.Ok(res);
         });
 
+        app.MapGet("/api/blogs/summary", async (IBlogsCompositionRoot compositionRoot) => await compositionRoot.ExecuteAsync(new GetBlogsSumaryQuery()));
+
+        app.MapGet("/api/blogs/templates", async (IBlogsCompositionRoot compositionRoot) => await compositionRoot.ExecuteAsync(new GetBlogTemplatesQuery()));
+
         app.MapPost("/api/blogs", async (CreateBlogCommand command, IBlogsCompositionRoot compositionRoot) => await compositionRoot.ExecuteAsync(command));
 
         app.MapPut("/api/blogs/{id}", async (Guid id, UpdateBlogCommand command, IBlogsCompositionRoot compositionRoot) =>
