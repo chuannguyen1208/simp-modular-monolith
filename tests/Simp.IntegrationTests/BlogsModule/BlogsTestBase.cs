@@ -25,9 +25,12 @@ public class BlogsTestBase : IClassFixture<BootstrapperWebApplicationFactory<Pro
 
         if (!context.Blogs.Any())
         {
-            context.Blogs.AddRange(
-                Blog.Create("B1", "D1", "C1", "C1")
-            );
+            context.Blogs.Add(Blog.Create("BLog", "BlogD", "BlogC", "BlogC"));
+
+            var template = Blog.Create("Template", "Template", "Template", "Template");
+            template.UpdateIsTemplate(true);
+
+            context.Blogs.Add(template);
 
             context.SaveChanges();
         }

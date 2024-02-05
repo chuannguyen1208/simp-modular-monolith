@@ -16,7 +16,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.PostAsJsonAsync("/api/blogs", new CreateBlogCommand("Title", "Description", "This is a text with some *emphasis*"));
+        var response = await client.PostAsJsonAsync("/api/blogs", new CreateBlogCommand("Title", "Description", "This is a text with some *emphasis*", false, false));
 
         var blogId = await response.Content.ReadFromJsonAsync<Guid>();
 
@@ -43,7 +43,7 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.PostAsJsonAsync("/api/blogs", new CreateBlogCommand(string.Empty, string.Empty, "Content"));
+        var response = await client.PostAsJsonAsync("/api/blogs", new CreateBlogCommand(string.Empty, string.Empty, "Content", false, false));
 
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -64,7 +64,13 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
 
         var client = _factory.CreateClient();
 
-        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, "Title update", "Description update", "This is a text with some *emphasis*"));
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(
+            Guid.Empty, 
+            "Title update", 
+            "Description update", 
+            "This is a text with some *emphasis*",
+            false,
+            false));
 
         response.EnsureSuccessStatusCode();
 
@@ -87,7 +93,13 @@ public class BlogCommandTests(BootstrapperWebApplicationFactory<Program> factory
 
         var client = _factory.CreateClient();
 
-        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(Guid.Empty, string.Empty, "Description update", "Content update"));
+        var response = await client.PutAsJsonAsync($"/api/blogs/{blog.Id}", new UpdateBlogCommand(
+            Guid.Empty, 
+            string.Empty, 
+            "Description update", 
+            "Content update",
+            false,
+            false));
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 

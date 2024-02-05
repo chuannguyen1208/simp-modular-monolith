@@ -9,7 +9,7 @@ namespace Simp.Modules.Blogs.UseCases.Blogs.Commands;
 
 public record UpdateBlogCommand : BlogRequest, IRequest
 {
-    public UpdateBlogCommand(Guid Id, string Title, string Description, string Content) : base(Title, Description, Content)
+    public UpdateBlogCommand(Guid Id, string Title, string Description, string Content, bool Published, bool IsTemplate) : base(Title, Description, Content, Published, IsTemplate)
     {
         this.Id = Id;
     }

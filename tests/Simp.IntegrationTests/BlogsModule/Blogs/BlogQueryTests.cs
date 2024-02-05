@@ -59,4 +59,14 @@ public class BlogQueryTests(BootstrapperWebApplicationFactory<Program> factory) 
         // Assert
         response.StatusCode.Equals(HttpStatusCode.NotFound);
     }
+
+    [Fact]
+    public async Task GetBlogTemplates()
+    {
+        var client = _factory.CreateClient();
+
+        var response = await client.GetFromJsonAsync<IEnumerable<BlogResponse>>("/api/blogs/templates");
+
+        Assert.True(response!.Any());
+    }
 }
