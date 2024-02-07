@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using Simp.Modules.Cshops.Infrastructure.AutofacModules;
 using Simp.Modules.Cshops.Infrastructure.EF;
 using Simp.Modules.Cshops.Infrastructure.Services;
 using Simp.Modules.Cshops.UseCases.Ingredients.Queries;
@@ -19,27 +20,11 @@ public class CshopsCompositionRoot(IConfiguration configuration) : CompositionRo
     {
         var builder = new ContainerBuilder();
 
+        var connectionString = configuration.GetConnectionString("cshop") ?? "";
+
+        builder.RegisterModule(new CshopDbContextModule(connectionString));
         builder.RegisterModule(new MediatorModule(typeof(GetIngredientsQuery).Assembly));
-        builder.RegisterType<CshopsMessageService>().AsImplementedInterfaces().SingleInstance();
-
-        var connectionString = configuration.GetConnectionString("cshop");
-
-        Log.Information($"Cshop connection string: {connectionString}");
-
-        var dbContextOptions = new DbContextOptionsBuilder<CshopDbContext>()
-            .UseSqlServer(connectionString)
-            .Options;
-
-        builder.RegisterInstance(dbContextOptions).SingleInstance();
-
-        builder.RegisterType<CshopDbContext>().InstancePerLifetimeScope();
-
-        builder.RegisterGeneric(typeof(Repository<>))
-            .AsImplementedInterfaces()
-            .WithParameter(
-                parameterSelector: (pi, ctx) => pi.ParameterType == typeof(DbContext),
-                valueProvider: (pi, ctx) => ctx.Resolve<CshopDbContext>())
-            .InstancePerLifetimeScope();
+        builder.RegisterModule(new ServicesModule());
 
         return builder;
     }

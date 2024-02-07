@@ -1,5 +1,7 @@
-﻿using Autofac.Extensions.DependencyInjection;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +9,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Serilog;
 using Simp.Shared.Abstractions.Primitives;
 using Simp.Shared.Infrastructure.Routing;
+using System.Reflection;
 
 namespace Simp.Shared.Infrastructure;
 
@@ -16,6 +19,11 @@ internal static class Extensions
     {
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
         builder.Host.UseSerilog();
+
+        builder.Host.ConfigureContainer<ContainerBuilder>((_, cb) =>
+        {
+            cb.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
+        });
     }
 
     public static void UseInfrastructure(this WebApplication app)

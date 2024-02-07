@@ -12,13 +12,6 @@ public class BootstrapperWebApplicationFactory<TProgram>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureLogging(builder =>
-        {
-            builder
-                .ClearProviders()
-                .AddConsole();
-        });
-
         builder.UseEnvironment("Integration");
     }
 
@@ -26,8 +19,8 @@ public class BootstrapperWebApplicationFactory<TProgram>
     {
         builder.ConfigureContainer<ContainerBuilder>(cb =>
         {
-            cb.RegisterType<CshopsFakeCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
             cb.RegisterType<BlogFakeCompositionRoot>().As<IBlogsCompositionRoot>().SingleInstance();
+            cb.RegisterType<CshopsFakeCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
         });
 
         return base.CreateHost(builder);

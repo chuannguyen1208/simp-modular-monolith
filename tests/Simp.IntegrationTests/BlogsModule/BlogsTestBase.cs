@@ -28,6 +28,7 @@ public class BlogsTestBase : IClassFixture<BootstrapperWebApplicationFactory<Pro
             context.Blogs.Add(Blog.Create("BLog", "BlogD", "BlogC", "BlogC"));
 
             var template = Blog.Create("Template", "Template", "Template", "Template");
+
             template.UpdateIsTemplate(true);
 
             context.Blogs.Add(template);

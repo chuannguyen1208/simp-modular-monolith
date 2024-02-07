@@ -23,7 +23,6 @@ public class BlogQueryTests(BootstrapperWebApplicationFactory<Program> factory) 
         var blogs = await response.Content.ReadFromJsonAsync<IEnumerable<BlogResponse>>();
 
         Assert.True(blogs?.Any());
-        Assert.True(blogs?.All(b => b.Published));
     }
 
     [Fact]

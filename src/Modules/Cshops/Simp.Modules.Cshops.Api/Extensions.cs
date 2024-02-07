@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using Simp.Modules.Cshops.Infrastructure;
+using Simp.Modules.Cshops.Infrastructure.AutofacModules;
 using Simp.Modules.Cshops.Infrastructure.EF;
 
 namespace Simp.Modules.Cshops.Api;
@@ -11,28 +13,24 @@ public static class Extensions
 {
     public static void AddCshopsModule(this WebApplicationBuilder builder)
     {
-        builder.Host
-            .ConfigureContainer<ContainerBuilder>((_, cb) =>
-            {
-                cb.RegisterType<CshopsCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
+        builder.Host.ConfigureContainer<ContainerBuilder>((_, cb) =>
+        {
+            var connectionString = builder.Configuration.GetConnectionString("cshop") ?? "";
 
-                var dbContextOptions = new DbContextOptionsBuilder<CshopDbContext>()
-                    .UseSqlServer(builder.Configuration.GetConnectionString("cshop"))
-                    .Options;
-
-                cb.RegisterInstance(dbContextOptions).SingleInstance();
-            });
+            cb.RegisterModule(new CshopDbContextModule(connectionString));
+            cb.RegisterType<CshopsCompositionRoot>().As<ICshopsCompositionRoot>().SingleInstance();
+        });
     }
 
     public static void UseCshopsModule(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
 
-        var compositionRoot = scope.ServiceProvider.GetRequiredService<ICshopsCompositionRoot>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<CshopDbContext>();
 
-        var compositionScope = compositionRoot.GetLifetimeScope();
+        var connectionString = dbContext.Database.GetConnectionString();
 
-        var dbContext = compositionScope.Resolve<CshopDbContext>();
+        Log.Information($"Cshop connection string: {connectionString}");
 
         if (dbContext.Database.IsRelational())
         {

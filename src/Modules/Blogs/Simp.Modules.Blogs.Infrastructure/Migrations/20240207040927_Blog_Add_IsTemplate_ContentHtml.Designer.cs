@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Simp.Modules.Blogs.Infrastructure.EF;
 
@@ -11,9 +12,11 @@ using Simp.Modules.Blogs.Infrastructure.EF;
 namespace Simp.Modules.Blogs.Infrastructure.Migrations
 {
     [DbContext(typeof(BlogsDbContext))]
-    partial class BlogsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240207040927_Blog_Add_IsTemplate_ContentHtml")]
+    partial class Blog_Add_IsTemplate_ContentHtml
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
