@@ -1,6 +1,5 @@
 using Serilog;
 using Simp.Modules.Blogs.Api;
-using Simp.Modules.Cshops.Api;
 using Simp.Shared.Infrastructure;
 
 var configuration = new ConfigurationBuilder()
@@ -18,12 +17,10 @@ try
     builder.Host.UseSerilog();
 
     builder.AddBlogsModule();
-    builder.AddCshopsModule();
     builder.AddInfrastructure();
 
     var app = builder.Build();
 
-    app.UseCshopsModule();
     app.UseBlogsModule();
     app.UseInfrastructure();
 
